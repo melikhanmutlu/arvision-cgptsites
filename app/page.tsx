@@ -32,6 +32,6 @@ export default function Home() {
 
     <section className="section container outcome"><Reveal><h2>Built once.<br /><span>Ready wherever people discover it.</span></h2></Reveal><div className="outcome-copy"><p>Keep materials, scale and product identity consistent from the browser to a real-space AR placement. ARVision creates the delivery formats while you stay focused on the experience.</p><div className="outcome-points"><span><b>Web viewer</b> Fast, responsive and easy to embed.</span><span><b>Mobile AR</b> App-free placement on iOS and Android.</span><span><b>Managed links</b> Share updates without changing the URL.</span></div><Link href="/features" className="primary-btn">Explore all capabilities <span>→</span></Link></div></section>
 
-    <section className="cta"><div className="container"><Reveal><span className="status-label dark"><i /> Ready when you are</span><h2>Give your next 3D model<br />a life beyond the file.</h2><p>Publish your first interactive model for free.</p><a href="#start" className="light-btn">Start creating →</a></Reveal></div></section><Footer />
+    <section className="cta"><div className="container"><Reveal><h2>Give your next 3D model<br />a life beyond the file.</h2><p>Publish your first interactive model for free.</p><a href="#start" className="light-btn">Start creating →</a></Reveal></div></section><Footer />
   </main>;
 }
