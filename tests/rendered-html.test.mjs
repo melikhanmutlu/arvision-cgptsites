@@ -17,6 +17,7 @@ test("server-renders the finished English ARVision homepage", async () => {
   assert.match(html, /<html lang="en">/i);
   assert.match(html, /<title>ARVision — From 3D model to web and AR<\/title>/i);
   assert.match(html, /One clear path from/);
+  assert.match(html, /Sign in/);
   assert.match(html, /Bring the model/);
   assert.match(html, /Three steps\. One continuous workspace\./);
   assert.match(html, /home-viewer-workspace\.png/);
