@@ -24,3 +24,5 @@ body{overflow-x:hidden}.hero{overflow:visible;padding-bottom:0}.viewer-drift{--v
 @media(prefers-reduced-motion:reduce){.viewer-drift{transform:none!important}}
 .viewer-drift{margin-bottom:-72px}.viewer-hero>img{width:100%;height:auto;aspect-ratio:auto;object-fit:contain}.create-section{z-index:4;padding-top:160px}
 @media(max-width:640px){.viewer-drift{margin-bottom:-42px}.viewer-hero>img{height:auto;aspect-ratio:auto;object-fit:contain}.create-section{padding-top:124px}}
+.hero{background:#fff}
+.hero-glow{display:none}
