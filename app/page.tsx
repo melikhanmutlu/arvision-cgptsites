@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { Footer, Header, Reveal } from "./components/SiteChrome";
 
@@ -14,15 +14,29 @@ export default function Home() {
   const [file, setFile] = useState("");
   const [activeStep, setActiveStep] = useState(0);
   const input = useRef<HTMLInputElement>(null);
+  const viewer = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    let frame = 0;
+    const updateViewerPosition = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        const offset = Math.min(72, window.scrollY * 0.09);
+        viewer.current?.style.setProperty("--viewer-drift", `${offset}px`);
+      });
+    };
+    updateViewerPosition();
+    addEventListener("scroll", updateViewerPosition, { passive: true });
+    return () => { cancelAnimationFrame(frame); removeEventListener("scroll", updateViewerPosition); };
+  }, []);
   return <main><Header />
     <section className="hero"><div className="hero-glow" />
       <div className="container hero-grid">
         <Reveal className="hero-copy"><h1>One clear path from model to reality.</h1><p>Upload an existing 3D file or generate one with AI. Refine it in Studio, then publish a fast web viewer and app-free AR experience.</p><div className="hero-actions"><a className="primary-btn" href="#start">Create your first model <span>→</span></a><Link className="text-btn" href="/studio">Explore Studio <span>↗</span></Link></div></Reveal>
-        <Reveal className="viewer-hero" delay={120}><img src="/viewer-showcase.png" alt="ARVision Studio interface" /></Reveal>
+        <div className="viewer-drift" ref={viewer}><Reveal className="viewer-hero" delay={120}><img src="/viewer-showcase.png" alt="ARVision Studio chair viewer with measurement and editing tools" /></Reveal></div>
       </div>
     </section>
 
-    <section className="section container" id="start"><Reveal className="section-heading"><div><span className="section-tag">01 — CREATE</span><h2>Choose how your model begins.</h2></div><p>Use a file you already have or describe what you need. Both paths open into the same Studio workflow.</p></Reveal>
+    <section className="section container create-section" id="start"><Reveal className="section-heading"><div><span className="section-tag">01 — CREATE</span><h2>Choose how your model begins.</h2></div><p>Use a file you already have or describe what you need. Both paths open into the same Studio workflow.</p></Reveal>
       <div className="create-grid"><Reveal className="upload-workspace"><div className="mode-tabs" role="tablist" aria-label="Model creation method"><button className={mode === "upload" ? "selected" : ""} onClick={() => setMode("upload")} role="tab" aria-selected={mode === "upload"}><span>↑</span><b>Upload a file</b><small>Use an existing 3D asset</small></button><button className={mode === "ai" ? "selected" : ""} onClick={() => setMode("ai")} role="tab" aria-selected={mode === "ai"}><span>✦</span><b>Generate with AI</b><small>Start from a text prompt</small></button></div>{mode === "upload" ? <><input hidden ref={input} type="file" accept=".glb,.stl,.obj,.fbx,.step,.zip" onChange={e => setFile(e.target.files?.[0]?.name || "")} /><button className="dropzone" onClick={() => input.current?.click()}><span>↑</span><b>{file || "Drop your 3D model here"}</b><small>GLB, STL, OBJ, FBX, STEP or ZIP · up to 100 MB</small></button><button className="primary-btn wide" disabled={!file}>{file ? "Open in Studio →" : "Choose a file"}</button></> : <><textarea className="prompt-box" placeholder="A compact modular desk lamp in matte black aluminium, soft rounded edges..." /><button className="primary-btn wide">Generate model →</button></>}</Reveal>
         <div className="create-notes">{[["01", "Automatic optimisation", "Geometry and textures are prepared for fast, reliable loading."], ["02", "AR on every phone", "Ready for iOS Quick Look and Android Scene Viewer."], ["03", "One shareable source", "Update the model without replacing every link and embed."]].map(([n, t, d], i) => <Reveal key={n} delay={i * 70}><article><span>{n}</span><div><h3>{t}</h3><p>{d}</p></div></article></Reveal>)}</div>
       </div>
