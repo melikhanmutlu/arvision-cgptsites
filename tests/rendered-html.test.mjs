@@ -18,9 +18,8 @@ test("server-renders the finished English ARVision homepage", async () => {
   assert.match(html, /<title>ARVision — From 3D model to web and AR<\/title>/i);
   assert.match(html, /One clear path from/);
   assert.match(html, /Bring the model/);
-  assert.match(html, /Place it in the world/);
+  assert.match(html, /Three steps\. One continuous workspace\./);
   assert.match(html, /home-upload-3d\.png/);
-  assert.match(html, /home-mobile-ar\.png/);
   assert.match(html, /hero-3d-maker-world\.png/);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape|react-loading-skeleton/i);
 });

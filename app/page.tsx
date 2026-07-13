@@ -1,8 +1,16 @@
 "use client";
+import { useState } from "react";
 import Link from "next/link";
 import { Footer, Header, Reveal } from "./components/SiteChrome";
 
+const workflow = [
+  { n: "01", title: "Upload", tag: "Bring your model", icon: "↑", heading: "Start with the asset you already have.", text: "Bring in GLB, STL, OBJ, FBX, STEP or ZIP. ARVision checks the file, preserves the important detail and prepares it for fast, reliable loading." },
+  { n: "02", title: "Refine", tag: "Polish in Studio", icon: "◇", heading: "Make the model feel right everywhere.", text: "Tune materials, lighting, scale and camera views in one focused workspace. Every change stays attached to the same model." },
+  { n: "03", title: "Publish", tag: "Share web + AR", icon: "↗", heading: "Ship one model to every surface.", text: "Create a browser viewer, mobile AR experience, QR code or embed without rebuilding the asset for each destination." },
+];
+
 export default function Home() {
+  const [activeStep, setActiveStep] = useState(0);
   return <main><Header />
     <section className="hero"><div className="hero-glow" />
       <div className="container hero-grid">
@@ -16,9 +24,10 @@ export default function Home() {
       <Reveal className="story-visual story-upload" delay={100}><img src="/home-upload-3d.png" alt="A 3D model being prepared for upload into ARVision" /></Reveal>
     </section>
 
-    <section className="flow-section ar-story"><div className="container story-section">
-      <Reveal className="story-copy"><span className="section-tag">02 — EXPERIENCE</span><h2>Place it in the world.<br />No app required.</h2><p>Publish one model to a responsive web viewer and app-free mobile AR. Scale, materials and product identity stay consistent from the browser to the room.</p><div className="story-links"><Link className="primary-btn" href="/features">Explore AR features <span>→</span></Link><Link className="text-btn" href="/workflow">How publishing works <span>↗</span></Link></div></Reveal>
-      <Reveal className="story-visual story-ar" delay={100}><img src="/home-mobile-ar.png" alt="A 3D chair placed through a mobile augmented reality experience" /></Reveal>
+    <section className="flow-section workflow-section"><div className="container">
+      <Reveal className="workflow-heading"><span className="section-tag">02 — WORKFLOW</span><h2>Three steps. One continuous workspace.</h2><p>Move from source file to an interactive experience without handing the model between disconnected tools.</p></Reveal>
+      <Reveal className="workflow-tabs" delay={80}>{workflow.map((step, i) => <button key={step.n} className={activeStep === i ? "active" : ""} onClick={() => setActiveStep(i)} role="tab" aria-selected={activeStep === i}><span>{step.n}</span><b>{step.title}</b><small>{step.tag}</small></button>)}</Reveal>
+      <Reveal className="workflow-detail" delay={120}><div className="workflow-icon" aria-hidden="true"><i /><span>{workflow[activeStep].icon}</span></div><div className="workflow-copy" role="tabpanel"><span className="detail-index">{workflow[activeStep].n}</span><h3>{workflow[activeStep].heading}</h3><p>{workflow[activeStep].text}</p><Link href="/workflow">See the complete workflow <span>→</span></Link></div></Reveal>
     </div></section>
 
     <section className="section container outcome"><Reveal><span className="section-tag">03 — PUBLISH</span><h2>Built once.<br /><span>Ready wherever people discover it.</span></h2></Reveal><div className="outcome-copy"><p>Keep materials, scale and product identity consistent from the browser to a real-space AR placement. ARVision creates the delivery formats while you stay focused on the experience.</p><div className="outcome-points"><span><b>Web viewer</b> Fast, responsive and easy to embed.</span><span><b>Mobile AR</b> App-free placement on iOS and Android.</span><span><b>Managed links</b> Share updates without changing the URL.</span></div><Link href="/features" className="primary-btn">Explore all capabilities <span>→</span></Link></div></section>
