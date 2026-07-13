@@ -19,18 +19,18 @@ export default function Home() {
       </div>
     </section>
 
-    <section className="section container create-section story-section" id="start">
-      <Reveal className="story-copy"><span className="section-tag">01 — CREATE</span><h2>Bring the model.<br />We prepare the rest.</h2><p>Start with the 3D asset you already have. ARVision optimises geometry, preserves materials and turns it into a fast, dependable web-ready model.</p><div className="story-links"><Link className="primary-btn" href="/studio">Open Studio <span>→</span></Link><Link className="text-btn" href="/workflow">See the workflow <span>↗</span></Link></div></Reveal>
-      <Reveal className="story-visual story-upload" delay={100}><img src="/home-upload-3d.png" alt="A 3D model being prepared for upload into ARVision" /></Reveal>
-    </section>
-
     <section className="flow-section workflow-section"><div className="container">
-      <Reveal className="workflow-heading"><span className="section-tag">02 — WORKFLOW</span><h2>Three steps. One continuous workspace.</h2><p>Move from source file to an interactive experience without handing the model between disconnected tools.</p></Reveal>
+      <Reveal className="workflow-heading"><h2>Three steps. One continuous workspace.</h2><p>Move from source file to an interactive experience without handing the model between disconnected tools.</p></Reveal>
       <Reveal className="workflow-tabs" delay={80}>{workflow.map((step, i) => <button key={step.n} className={activeStep === i ? "active" : ""} onClick={() => setActiveStep(i)} role="tab" aria-selected={activeStep === i}><span>{step.n}</span><b>{step.title}</b><small>{step.tag}</small></button>)}</Reveal>
       <Reveal className="workflow-detail" delay={120}><div className="workflow-icon" aria-hidden="true"><i /><span>{workflow[activeStep].icon}</span></div><div className="workflow-copy" role="tabpanel"><span className="detail-index">{workflow[activeStep].n}</span><h3>{workflow[activeStep].heading}</h3><p>{workflow[activeStep].text}</p><Link href="/workflow">See the complete workflow <span>→</span></Link></div></Reveal>
     </div></section>
 
-    <section className="section container outcome"><Reveal><span className="section-tag">03 — PUBLISH</span><h2>Built once.<br /><span>Ready wherever people discover it.</span></h2></Reveal><div className="outcome-copy"><p>Keep materials, scale and product identity consistent from the browser to a real-space AR placement. ARVision creates the delivery formats while you stay focused on the experience.</p><div className="outcome-points"><span><b>Web viewer</b> Fast, responsive and easy to embed.</span><span><b>Mobile AR</b> App-free placement on iOS and Android.</span><span><b>Managed links</b> Share updates without changing the URL.</span></div><Link href="/features" className="primary-btn">Explore all capabilities <span>→</span></Link></div></section>
+    <section className="section container create-section story-section" id="start">
+      <Reveal className="story-copy"><h2>Bring the model.<br />We prepare the rest.</h2><p>Start with the 3D asset you already have. ARVision optimises geometry, preserves materials and turns it into a fast, dependable web-ready model.</p><div className="story-links"><Link className="primary-btn" href="/studio">Open Studio <span>→</span></Link><Link className="text-btn" href="/workflow">See the workflow <span>↗</span></Link></div></Reveal>
+      <Reveal className="story-visual story-viewer" delay={100}><img src="/home-viewer-workspace.png" alt="ARVision viewer showing a purple 3D model and editing tools" /></Reveal>
+    </section>
+
+    <section className="section container outcome"><Reveal><h2>Built once.<br /><span>Ready wherever people discover it.</span></h2></Reveal><div className="outcome-copy"><p>Keep materials, scale and product identity consistent from the browser to a real-space AR placement. ARVision creates the delivery formats while you stay focused on the experience.</p><div className="outcome-points"><span><b>Web viewer</b> Fast, responsive and easy to embed.</span><span><b>Mobile AR</b> App-free placement on iOS and Android.</span><span><b>Managed links</b> Share updates without changing the URL.</span></div><Link href="/features" className="primary-btn">Explore all capabilities <span>→</span></Link></div></section>
 
     <section className="cta"><div className="container"><Reveal><span className="status-label dark"><i /> Ready when you are</span><h2>Give your next 3D model<br />a life beyond the file.</h2><p>Publish your first interactive model for free.</p><a href="#start" className="light-btn">Start creating →</a></Reveal></div></section><Footer />
   </main>;

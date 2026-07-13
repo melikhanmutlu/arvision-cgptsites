@@ -19,7 +19,8 @@ test("server-renders the finished English ARVision homepage", async () => {
   assert.match(html, /One clear path from/);
   assert.match(html, /Bring the model/);
   assert.match(html, /Three steps\. One continuous workspace\./);
-  assert.match(html, /home-upload-3d\.png/);
+  assert.match(html, /home-viewer-workspace\.png/);
+  assert.doesNotMatch(html, /01 — CREATE|02 — WORKFLOW|03 — PUBLISH/);
   assert.match(html, /hero-3d-maker-world\.png/);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape|react-loading-skeleton/i);
 });
