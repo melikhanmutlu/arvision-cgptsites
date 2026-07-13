@@ -1,89 +1,16 @@
 "use client";
-
 import { useRef, useState } from "react";
+import Link from "next/link";
+import { Footer, Header, Reveal } from "./components/SiteChrome";
 
-const formats = ["STL", "OBJ", "FBX", "STEP", "ZIP"];
-
-export default function Home() {
-  const [mode, setMode] = useState<"upload" | "ai">("upload");
-  const [file, setFile] = useState<string>("");
-  const [prompt, setPrompt] = useState("");
-  const input = useRef<HTMLInputElement>(null);
-
-  return (
-    <main>
-      <header className="nav">
-        <a className="brand" href="#top" aria-label="ARVision ana sayfa"><span className="brand-cube">A</span>arvision</a>
-        <nav aria-label="Ana menü">
-          <a href="#workflow">nasıl çalışır</a><a href="#capabilities">özellikler</a><a href="#pricing">fiyatlandırma</a>
-        </nav>
-        <div className="nav-actions"><button className="text-button">giriş yap</button><button className="solid small">ücretsiz başla <span>↗</span></button></div>
-      </header>
-
-      <section className="hero" id="top">
-        <div className="hero-copy">
-          <p className="eyebrow"><span className="live-dot" /> WEB TABANLI 3D + AR PLATFORMU</p>
-          <h1>3D modelinizi.<br/><span>Gerçek dünyaya</span><br/>taşıyın.</h1>
-          <p className="lede">Modelinizi yükleyin veya yapay zekâ ile üretin. Otomatik dönüştürün, web’de yayınlayın ve tek dokunuşla artırılmış gerçeklikte deneyimleyin.</p>
-          <div className="proof"><span>✓ Kurulum gerektirmez</span><span>✓ Tüm cihazlarda çalışır</span><span>✓ Ücretsiz başlayın</span></div>
-        </div>
-
-        <div className="studio" aria-label="Model yükleme stüdyosu">
-          <div className="studio-top"><span>YENİ MODEL</span><span className="secure">● güvenli bağlantı</span></div>
-          <div className="tabs" role="tablist">
-            <button role="tab" aria-selected={mode === "upload"} onClick={() => setMode("upload")}>01 / DOSYA YÜKLE</button>
-            <button role="tab" aria-selected={mode === "ai"} onClick={() => setMode("ai")}>02 / AI İLE ÜRET <b>PRO</b></button>
-          </div>
-          {mode === "upload" ? (
-            <div className="panel">
-              <input ref={input} type="file" hidden accept=".stl,.obj,.fbx,.step,.zip" onChange={(e) => setFile(e.target.files?.[0]?.name || "")} />
-              <button className="dropzone" onClick={() => input.current?.click()}>
-                <span className="upload-icon">↑</span>
-                <strong>{file || "Modelinizi buraya bırakın"}</strong>
-                <small>{file ? "Dosyanız hazır — dönüştürmeye başlayabilirsiniz" : "veya bilgisayarınızdan bir dosya seçin"}</small>
-                <em>Dosya seç</em>
-              </button>
-              <div className="format-row"><span>DESTEKLENEN</span>{formats.map((f) => <code key={f}>{f}</code>)}<span className="max">MAKS. 100 MB</span></div>
-              <div className="settings">
-                <label>ÇIKTI FORMATI<select><option>GLB + USDZ (önerilen)</option><option>Yalnızca GLB</option></select></label>
-                <label>SIKIŞTIRMA<select><option>Meshopt — dengeli</option><option>Draco — küçük dosya</option></select></label>
-              </div>
-              <button className="solid full" disabled={!file}>{file ? "DÖNÜŞTÜRMEYİ BAŞLAT →" : "BİR DOSYA SEÇİN"}</button>
-            </div>
-          ) : (
-            <div className="panel ai-panel">
-              <label className="prompt-label">HAYALİNİZDEKİ MODELİ TARİF EDİN</label>
-              <textarea value={prompt} onChange={(e) => setPrompt(e.target.value)} placeholder="Örn. İskandinav tarzı, açık meşe ahşap bir lounge sandalye..." />
-              <div className="ai-options"><span>METİNDEN 3D</span><span>◆ Meshy destekli</span></div>
-              <button className="solid full" disabled={!prompt}>3D MODELİ ÜRET →</button>
-            </div>
-          )}
-          <div className="studio-foot"><span>HESAP GEREKTİRMEZ</span><span>ŞİFRELİ YÜKLEME</span><span>ANONİM KALIN</span></div>
-        </div>
-      </section>
-
-      <section className="ticker" aria-label="Özellikler"><span>YÜKLE</span><i>→</i><span>DÖNÜŞTÜR</span><i>→</i><span>YAYINLA</span><i>→</i><span>AR'DA GÖR</span><i>→</i><span>HER YERDE PAYLAŞ</span></section>
-
-      <section className="workflow" id="workflow">
-        <div><p className="eyebrow">/ İŞ AKIŞI</p><h2>Dosyadan AR deneyimine.<br/>Dakikalar içinde.</h2></div>
-        <div className="steps">
-          {[['01','Yükle','STL, OBJ, FBX, STEP veya ZIP dosyanızı sürükleyip bırakın.'],['02','Dönüştür','Bulutta optimize edilmiş GLB ve iOS uyumlu USDZ çıktıları alın.'],['03','Paylaş','Web linki, QR kod veya embed ile modelinizi her yerde yayınlayın.'],['04','AR’da deneyimle','Android Scene Viewer ve iOS Quick Look ile gerçek ölçekte görün.']].map(([n,t,d]) => <article key={n}><span>{n}</span><div className="step-icon">{n === '01' ? '↥' : n === '02' ? '◇' : n === '03' ? '↗' : '⌗'}</div><h3>{t}</h3><p>{d}</p></article>)}
-        </div>
-      </section>
-
-      <section className="capabilities" id="capabilities">
-        <p className="eyebrow">/ TEK PLATFORM, TÜM 3D İŞ AKIŞINIZ</p>
-        <div className="cap-grid"><h2>Modelden<br/>deneyime.<br/><span>Her araç,<br/>tek yerde.</span></h2>
-          <div className="feature-list">
-            <article><b>01</b><div><h3>3D & AR Görüntüleyici</h3><p>Materyal, ışık, ölçüm, hotspot ve sürüm araçlarıyla tam ekran çalışma alanı.</p></div><span>↗</span></article>
-            <article><b>02</b><div><h3>AI ile 3D Üretim</h3><p>Metinden veya referans görselden yayınlanabilir, dokulu modeller üretin.</p></div><span>↗</span></article>
-            <article><b>03</b><div><h3>Takımlar için hazır</h3><p>Roller, paylaşımlı klasörler, özel alan adı, API ve webhook desteği.</p></div><span>↗</span></article>
-          </div>
-        </div>
-      </section>
-
-      <section className="pricing" id="pricing"><div><p className="eyebrow">/ BASİT FİYATLANDIRMA</p><h2>Ücretsiz başlayın.<br/>İhtiyacınız kadar büyüyün.</h2></div><div className="price"><span>PRO</span><strong>$19<small>/ay</small></strong><p>10 GB depolama · 200 model<br/>20 AI üretimi · API erişimi</p><button className="solid">PRO'YU DENE →</button></div></section>
-      <footer><a className="brand" href="#top"><span className="brand-cube">A</span>arvision</a><p>3D içeriği web ve gerçek dünya için hazırlar.</p><div><a href="#workflow">ürün</a><a href="#pricing">fiyatlandırma</a><a href="#capabilities">geliştiriciler</a></div><span>© 2026 ARVISION</span></footer>
-    </main>
-  );
+export default function Home(){
+ const [mode,setMode]=useState<"upload"|"ai">("upload"); const [file,setFile]=useState(""); const input=useRef<HTMLInputElement>(null);
+ return <main><Header/>
+  <section className="saas-hero"><div className="hero-glow"/><Reveal className="hero-copy"><span className="pill"><i/> Web tabanlı 3D + AR platformu</span><h1>3D içeriğiniz için<br/><span>tek çalışma alanı.</span></h1><p>Modelleri yükleyin, optimize edin, AI ile üretin ve web ile artırılmış gerçeklikte yayınlayın. Ekipler için tasarlanmış modern 3D operasyon platformu.</p><div className="hero-actions"><a className="primary-btn" href="#start">Ücretsiz başlayın <span>→</span></a><Link className="secondary-btn" href="/workflow">Nasıl çalışır <span>↗</span></Link></div><div className="trust-row"><span>✓ Kredi kartı gerekmez</span><span>✓ 5 dakikada kurulum</span><span>✓ İstediğiniz zaman iptal</span></div></Reveal>
+   <Reveal className="product-shell" delay={150}><div className="window-bar"><span className="window-dots">● ● ●</span><span>workspace.arvision.app</span><span>⌘ K</span></div><div className="app-ui"><aside><b>A</b>{["⌂","◇","◫","⌁","⚙"].map((x,i)=><span className={i===1?"active":""} key={x}>{x}</span>)}</aside><div className="dashboard"><div className="dash-head"><div><small>WORKSPACE / MODELLER</small><h3>Model Kitaplığı</h3></div><button>+ Yeni model</button></div><div className="stats"><article><span>TOPLAM MODEL</span><b>248</b><em>+12 bu ay</em></article><article><span>GÖRÜNTÜLEME</span><b>84.2K</b><em>↗ %18.4</em></article><article><span>DEPOLAMA</span><b>6.8 GB</b><em>10 GB’ın %68’i</em></article></div><div className="model-grid">{["Chair / V4","Sneaker / Final","Lamp / V2"].map((x,i)=><article key={x}><div className={`model-shape shape-${i}`}><span>360°</span></div><b>{x}</b><small>GLB · optimize</small></article>)}</div></div></div></Reveal>
+  </section>
+  <section className="logo-cloud"><span>3D ekiplerinin güvendiği altyapı</span><b>NORTH/FORM</b><b>POLYGON</b><b>STUDIO 09</b><b>OBJECTS®</b><b>MONO</b></section>
+  <section className="home-section" id="start"><Reveal><span className="section-tag">01 — BAŞLAYIN</span><h2>Dosyadan canlı deneyime.<br/><span>Tek bir akışta.</span></h2></Reveal><div className="upload-layout"><Reveal className="upload-card"><div className="mode-tabs"><button className={mode==="upload"?"selected":""} onClick={()=>setMode("upload")}>Dosya yükle</button><button className={mode==="ai"?"selected":""} onClick={()=>setMode("ai")}>AI ile üret <em>PRO</em></button></div>{mode==="upload"?<><input hidden ref={input} type="file" onChange={e=>setFile(e.target.files?.[0]?.name||"")}/><button className="dropzone" onClick={()=>input.current?.click()}><span>↑</span><b>{file||"3D modelinizi buraya bırakın"}</b><small>STL, OBJ, FBX, STEP veya ZIP · Maks. 100 MB</small></button><button className="primary-btn wide" disabled={!file}>{file?"Dönüştürmeyi başlat →":"Bir dosya seçin"}</button></>:<><textarea className="prompt-box" placeholder="Örn. Mat siyah, modüler bir masa lambası..."/><button className="primary-btn wide">Modeli üret →</button></>}</Reveal><div className="mini-features">{[["01","Otomatik optimizasyon","Meshopt ve Draco ile daha hızlı yüklenen modeller."],["02","Her cihazda AR","iOS Quick Look ve Android Scene Viewer hazır."],["03","Anında paylaşım","Link, QR, embed ve e-ticaret entegrasyonları."]].map((x,i)=><Reveal key={x[0]} delay={i*90}><article><span>{x[0]}</span><div><h3>{x[1]}</h3><p>{x[2]}</p></div><b>↗</b></article></Reveal>)}</div></div></section>
+  <section className="metrics"><Reveal><strong>10×</strong><span>daha hızlı yayınlama</span></Reveal><Reveal delay={100}><strong>99.9%</strong><span>platform erişilebilirliği</span></Reveal><Reveal delay={200}><strong>2.4M+</strong><span>aylık 3D görüntüleme</span></Reveal><Reveal delay={300}><strong>42</strong><span>desteklenen ülke</span></Reveal></section>
+  <section className="cta-band"><Reveal><span className="pill light">ARVision ile tanışın</span><h2>3D operasyonunuzu<br/>bugün modernleştirin.</h2><p>İlk modelinizi ücretsiz yayınlayın. Kurulum veya kredi kartı gerekmez.</p><a href="#start" className="light-btn">Ücretsiz başlayın →</a></Reveal></section><Footer/></main>
 }
