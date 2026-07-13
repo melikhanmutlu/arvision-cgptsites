@@ -14,3 +14,27 @@
 @keyframes spin{to{transform:rotate(360deg)}}@keyframes modelFloat{0%,100%{transform:rotateY(-20deg) rotateX(6deg) translateY(0)}50%{transform:rotateY(-14deg) rotateX(2deg) translateY(-12px)}}
 @media(max-width:1000px){.ar-showcase,.studio-upload{grid-template-columns:1fr}.library-grid{grid-template-columns:repeat(2,1fr)}.viewer-canvas{right:0}.viewer-panel{width:270px}.library-tools{grid-template-columns:1fr}.folder-row{grid-template-columns:1fr 1fr}.nav nav{gap:16px}}
 @media(max-width:680px){.ar-showcase{padding:80px 18px}.ar-showcase h2{font-size:42px}.studio-upload{padding:120px 18px 40px}.studio-intro h1{font-size:46px}.convert-options{grid-template-columns:1fr}.studio-drop{height:230px}.viewer-panel{top:auto;left:8px;right:8px;bottom:0;width:auto;height:43vh;border-radius:14px 14px 0 0}.viewer-canvas{inset:130px 0 37vh}.viewer-toolbar{bottom:44vh;max-width:94vw;overflow:auto}.viewer-toolbar button{min-width:32px}.library-page{padding:115px 18px 70px}.library-heading{align-items:flex-start;flex-direction:column;gap:25px}.library-heading h1{font-size:42px}.folder-row,.library-grid{grid-template-columns:1fr}.library-tools>div{overflow:auto}.thumb{height:250px}}
+
+/* Legibility pass: product metadata and controls stay readable at normal zoom. */
+.window-bar,.dash-head button,.stats span,.stats em,.model-grid article>small,
+.section-tag,.mini-features article>span,.metrics span,.feature-grid article>span,
+.feature-grid a,.pricing-grid article>p,.pricing-grid article>div p,
+.process-banner p,.process-banner span,.studio-uploader-head span,
+.studio-uploader-head em,.convert-options label,.convert-options select,
+.convert-state>p,.progress-meta,.convert-steps,.viewer-top small,
+.view-hint,.panel-title small,.tool-list button,.panel-controls label,
+.library-tools button,.storage-card>div:first-child,.storage-card small,
+.folder-row small,.model-info small,.model-meta,.model-actions,.thumb>span{font-size:11px}
+.dash-head small,.stats span,.stats em,.model-grid article>small,
+.panel-title small{font-size:10px}.studio-drop small,.studio-drop em,
+.model-info b,.library-tools input,.library-tools select{font-size:13px}.mini-features p,
+.feature-grid p,.pricing-grid article>p,.pricing-grid article>div p,
+.timeline p,.faq details p,.ar-showcase-copy p{font-size:14px}.tool-list button{padding:11px 10px}.viewer-top{font-size:13px}.viewer-toolbar button{font-size:12px}.logo-cloud>span{font-size:11px;max-width:150px}.capability-strip strong{font-size:22px;letter-spacing:-.025em}.capability-strip span{font-size:12px}.ar-visual img{aspect-ratio:16/9}.ar-float-top{font-size:11px}.ar-float-bottom span{font-size:10px}.studio-uploader-head b{font-size:15px}.model-info b{font-size:14px}
+.viewer-model>div{display:none}.viewer-model:before{content:"";position:absolute;width:190px;height:92px;left:45px;top:42px;border-radius:46% 46% 38% 38%;background:linear-gradient(145deg,rgba(90,91,98,.96),rgba(205,207,211,.82));box-shadow:inset 0 0 0 2px rgba(255,255,255,.3),0 16px 34px rgba(55,58,68,.18)}.viewer-model:after{content:"";position:absolute;width:118px;height:158px;left:81px;top:118px;border-radius:14px 14px 28px 28px;background:linear-gradient(90deg,#9fa3aa,#f1f2f3 48%,#8a8e95);box-shadow:inset 0 35px 30px rgba(255,232,185,.35),0 28px 20px rgba(45,48,58,.24)}
+.window-bar,.studio-uploader-head span,.studio-uploader-head em,
+.convert-options label,.convert-options select,.convert-state>p,.progress-meta,
+.convert-steps,.viewer-top small,.view-hint,.panel-title small,.tool-list button,
+.panel-controls label,.storage-card>div:first-child,.storage-card small,
+.folder-row small,.model-info small,.model-meta,.model-actions,.thumb>span{font-size:12px}
+.dash-head small,.stats span,.stats em,.model-grid article>small{font-size:11px}.mode-tabs em,.showcase-points b,.pricing-grid article>em{font-size:11px}.integration-strip>div>span{font-size:12px}.home-section{padding-bottom:80px}
+@media(max-width:680px){.capability-strip strong{font-size:17px}.capability-strip span{font-size:11px}.ar-visual img{aspect-ratio:4/3}.logo-cloud b{font-size:11px}}
