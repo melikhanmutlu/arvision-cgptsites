@@ -32,7 +32,7 @@ export default function Home() {
     <section className="hero"><div className="hero-glow" />
       <div className="container hero-grid">
         <Reveal className="hero-copy"><h1>One clear path from model to reality.</h1><p>Upload an existing 3D file or generate one with AI. Refine it in Studio, then publish a fast web viewer and app-free AR experience.</p><div className="hero-actions"><a className="primary-btn" href="#start">Create your first model <span>→</span></a><Link className="text-btn" href="/studio">Explore Studio <span>↗</span></Link></div></Reveal>
-        <div className="viewer-drift" ref={viewer}><Reveal className="viewer-hero" delay={120}><img src="/viewer-showcase.png" alt="ARVision Studio chair viewer with measurement and editing tools" /></Reveal></div>
+        <div className="viewer-drift" ref={viewer}><Reveal className="viewer-hero" delay={120}><img src="/hero-3d-maker-world.png" alt="3D printer transforming a physical prototype into a digital 3D and AR experience" /></Reveal></div>
       </div>
     </section>
 

@@ -20,7 +20,7 @@ test("server-renders the finished English ARVision homepage", async () => {
   assert.match(html, /Upload a file/);
   assert.match(html, /Generate with AI/);
   assert.match(html, /Three steps\. One continuous workspace\./);
-  assert.match(html, /viewer-showcase\.png/);
+  assert.match(html, /hero-3d-maker-world\.png/);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape|react-loading-skeleton/i);
 });
 
