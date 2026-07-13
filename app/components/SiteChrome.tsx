@@ -1,23 +1,7 @@
 "use client";
-
 import Link from "next/link";
-import { useEffect, useState } from "react";
-
-export function Header() {
-  const [scrolled, setScrolled] = useState(false);
-  useEffect(() => { const onScroll = () => setScrolled(scrollY > 24); onScroll(); addEventListener("scroll", onScroll); return () => removeEventListener("scroll", onScroll); }, []);
-  return <header className={`nav ${scrolled ? "nav-scrolled" : ""}`}>
-    <Link className="brand" href="/"><span className="brand-mark">A</span>arvision</Link>
-    <nav><Link href="/workflow">Nasıl çalışır</Link><Link href="/features">Özellikler</Link><Link href="/pricing">Fiyatlandırma</Link></nav>
-    <div className="nav-actions"><button className="ghost-btn">Giriş yap</button><Link className="primary-btn mini" href="/#start">Ücretsiz başla <span>→</span></Link></div>
-  </header>;
-}
-
-export function Footer() { return <footer><Link className="brand" href="/"><span className="brand-mark">A</span>arvision</Link><p>3D iş akışınız. Tek platformda.</p><div><Link href="/workflow">Ürün</Link><Link href="/features">Özellikler</Link><Link href="/pricing">Fiyatlandırma</Link></div><span>© 2026 ARVISION</span></footer> }
-
-export function Reveal({children, className="", delay=0}:{children:React.ReactNode,className?:string,delay?:number}) {
-  useEffect(() => { const nodes = document.querySelectorAll("[data-reveal]"); const obs = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && e.target.classList.add("is-visible")), {threshold:.14}); nodes.forEach(n=>obs.observe(n)); return()=>obs.disconnect(); }, []);
-  return <div data-reveal className={`reveal ${className}`} style={{"--delay":`${delay}ms`} as React.CSSProperties}>{children}</div>;
-}
-
-export function PageHero({kicker,title,copy}:{kicker:string,title:string,copy:string}) { return <section className="page-hero"><div className="orb orb-one"/><div className="orb orb-two"/><Reveal><span className="pill">{kicker}</span><h1>{title}</h1><p>{copy}</p></Reveal></section> }
+import {useEffect,useState} from "react";
+export function Header(){const[scrolled,setScrolled]=useState(false);useEffect(()=>{const onScroll=()=>setScrolled(scrollY>24);onScroll();addEventListener("scroll",onScroll);return()=>removeEventListener("scroll",onScroll)},[]);return <header className={`nav ${scrolled?"nav-scrolled":""}`}><Link className="brand" href="/"><span className="brand-mark">A</span>arvision</Link><nav><Link href="/studio">Studio</Link><Link href="/library">Kütüphane</Link><Link href="/features">Özellikler</Link><Link href="/pricing">Fiyatlandırma</Link></nav><div className="nav-actions"><button className="ghost-btn">Giriş yap</button><Link className="primary-btn mini" href="/studio">Studio’yu aç <span>→</span></Link></div></header>}
+export function Footer(){return <footer><Link className="brand" href="/"><span className="brand-mark">A</span>arvision</Link><p>3D iş akışınız. Tek platformda.</p><div><Link href="/studio">Studio</Link><Link href="/library">Kütüphane</Link><Link href="/features">Özellikler</Link><Link href="/pricing">Fiyatlandırma</Link></div><span>© 2026 ARVISION</span></footer>}
+export function Reveal({children,className="",delay=0}:{children:React.ReactNode,className?:string,delay?:number}){useEffect(()=>{const nodes=document.querySelectorAll("[data-reveal]");const obs=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&e.target.classList.add("is-visible")),{threshold:.14});nodes.forEach(n=>obs.observe(n));return()=>obs.disconnect()},[]);return <div data-reveal className={`reveal ${className}`} style={{"--delay":`${delay}ms`} as React.CSSProperties}>{children}</div>}
+export function PageHero({kicker,title,copy}:{kicker:string,title:string,copy:string}){return <section className="page-hero"><div className="orb orb-one"/><div className="orb orb-two"/><Reveal><span className="pill">{kicker}</span><h1>{title}</h1><p>{copy}</p></Reveal></section>}
